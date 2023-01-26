@@ -3,11 +3,11 @@ import openpyxl
 
 file = openpyxl.load_workbook('inventory.xlsx')
 
+
 product_details = file['Sheet1']
 
 products_company = {}
 products_cost_per_company = {}
-unit_product_price = {}
 
 
 for product_row in range(2, product_details.max_row + 1):
@@ -27,14 +27,26 @@ for product_row in range(2, product_details.max_row + 1):
                                                   (product_quantity * product_price)
     else:
         products_cost_per_company[company_name] = product_quantity * product_price
+    # Calculate Unit Price and Save to Excel Sheet
+    unit_price = product_details.cell(product_row, 5)
+    unit_price.value = round(product_price / product_quantity, 2)
 
-    # unit_price = product_price / product_quantity
-    unit_product_price[product_row] = product_price / product_quantity
+    # Calculate Total Cost per company and save to Excel Sheet
+    total_cost = product_details.cell(product_row, 6)
+    total_cost.value = round(product_price * product_quantity, 2)
 
+
+e5 = product_details.cell(1, 5)
+e6 = product_details.cell(1, 6)
+e6.value = " Total Cost"
+e5.value = 'Unit Price'
+
+
+file.save("inventory_solution_unitPrice_totalPrice.xlsx")
 
 print(products_company)
 print(products_cost_per_company)
 print(sum(products_cost_per_company.values()))
-print(unit_product_price)
+
 
 
