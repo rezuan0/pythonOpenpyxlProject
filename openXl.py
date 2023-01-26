@@ -7,6 +7,8 @@ product_details = file['Sheet1']
 
 products_company = {}
 products_cost_per_company = {}
+unit_product_price = {}
+
 
 for product_row in range(2, product_details.max_row + 1):
     # Total Company
@@ -26,14 +28,13 @@ for product_row in range(2, product_details.max_row + 1):
     else:
         products_cost_per_company[company_name] = product_quantity * product_price
 
-
-
-
+    # unit_price = product_price / product_quantity
+    unit_product_price[product_row] = product_price / product_quantity
 
 
 print(products_company)
-
 print(products_cost_per_company)
 print(sum(products_cost_per_company.values()))
+print(unit_product_price)
 
 
