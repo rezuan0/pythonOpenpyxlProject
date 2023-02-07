@@ -1,13 +1,15 @@
+
 class User:
-    def __int__(self, name, email, password, job_title):
+    def __init__(self, name, email, password, job_title):
         self.name = name
         self.email = email
         self.password = password
         self.job_title = job_title
 
     def get_user_info(self):
-        print(f"{self.name} & {self.email} & {self.job_title}")
+        print(f'Name is {self.name}, Email is {self.email} & Job Title is {self.job_title}.')
 
 
-app_user_one = User("Md.Rezuan Hussen", "rezu@rh.com", "DebOps Engineer", "psw1")
+app_user = User("Md. Jone Deo", "hone@deo.com", "secret", "devOps Engineer")
+app_user.get_user_info()
 
